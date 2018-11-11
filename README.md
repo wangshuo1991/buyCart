@@ -1,7 +1,7 @@
 # buyCart -- 购物车
 基于vue和axios实现的简单的购物车列表：主要功能有全选和反选（checkbox），商品删除（deleteItem），以及计算商品数量总和(count)和商品总价格(totalPrice)。
 
-### 实现反选和全选 - computed
+### 实现反选和全选 - computed 计算属性实现
 
 ```
 checkAll: {  
