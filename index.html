@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,li {
+            list-style: none;
+        }
+
+        input,button {
+            border: none;
+            outline: none;
+        }
+
+        img {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .product-cart {
+            width: 1000px;
+            margin: 30px auto;
+        }
+
+        .product-cart-title {
+            height: 40px;
+            border-bottom: 1px solid #d7d7d7;
+            position: relative;
+        }
+        
+        .product-cart-title h1 {
+            position: absolute;
+            font-size: 20px;
+            border-bottom: 2px solid #f40;
+            left: 0;
+            bottom: -1px;
+        }
+
+        .product-lists {
+            margin-top: 20px;
+        }
+
+        .product-list-item {
+            padding: 15px 20px;
+            background: #f8f8f8;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .select-product {
+            height: 100px;
+            float: left;
+        }
+
+        .check-box {
+            width: 14px;
+            height: 14px;
+            margin-top: 43px;
+        }
+
+        .product-cover {
+            width: 100px;
+            height: 100px;
+            background: #f1f1f1;
+            float: left;
+            margin-left: 15px;
+        }
+
+        .product-details {
+            float: left;
+            width: 500px;
+            padding-top: 20px;
+            margin-left: 20px;
+        }
+
+        .product-count {
+            margin-top: 15px;
+        }
+
+        .product-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .product-info {
+            margin-top: 20px;
+            color: #878787;
+        }
+
+        .count-price {
+            float: left;
+            padding-top: 20px;
+        }
+
+        .btn-group {
+            float: right;
+            padding-top: 35px;
+        }
+
+        .delete-btn {
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #f8f8f8;
+            background: #f30;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product-price {
+            color: #f40;
+            font-weight: bold;
+        }
+
+        .control-btn {
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+            background: #d7d7d7;
+            cursor: pointer;
+        }
+
+        .count-number {
+            display: inline-block;
+            width: 40px;
+            height: 28px;
+            border: 1px solid #d7d7d7;
+            line-height: 30px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .total {
+            border-top: 1px solid #d7d7d7;
+            padding-top: 20px;
+        }
+        
+        .total-wrapper {
+            padding: 15px 20px;
+            background: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .select-all {
+            float: left;
+            margin-right: 350px;
+        }
+
+        .select-all input {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .product-des {
+            float: left;
+        }
+
+        .price-box {
+            float: right;
+        }
+
+        .total-price {
+            margin-left: 20px;
+            color: #f40;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        <div class="product-cart">
+            <div class="product-cart-title">
+                <h1>购物列表</h1>
+            </div>
+            <ul class="product-lists">
+                <li 
+                class="product-list-item" 
+                v-for="(item,index) in dataAry" 
+                :key="index">
+                    <div class="select-product">
+                        <input 
+                        class="check-box" 
+                        type="checkbox" 
+                        v-model="item.isSelected" 
+                       >
+                    </div>
+                    <div class="product-cover">
+                        <img :src="item.productCover" alt="">
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-name">{{item.productName}}</h2>
+                        <p class="product-info">"{{item.productInfo}}"</p>
+                    </div>
+                    <div class="count-price">
+                        <div class="product-price">
+                            ￥{{item.productPrice | toFixed(2)}}
+                        </div>
+                        <div class="product-count">
+                            <span class="control-btn" @click.stop.prevent="mins">-</span><input class="count-number" v-model.number="item.productCount"><span class="control-btn" @click.stop.prevent="add">+</span>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="delete-btn" @click.stop.prevent="deleteItem(item)">删除</button>
+                    </div>
+                </li>
+            </ul> 
+            <div class="total">
+                <div class="total-wrapper">
+                    <div class="select-all">
+                        <input 
+                        type="checkbox" 
+                        v-model="checkAll"
+                        > 全选
+                    </div>
+                    <div class="product-des">
+                        <span>商品总数:</span><span class="total-price">{{totalCount}}</span>
+                    </div>
+                    <div class="price-box">
+                        <span>总价:</span><span class="total-price">￥{{sum | toFixed(2)}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                dataAry: [],
+                // checkAll: false
+            },
+            created(){
+                axios.get('./myjson.json').then((res)=>{
+                    this.dataAry = res.data;
+                    //this.checkOne(); // 页面[尤其是数据加载完毕之后才]进入进入的时候 先执行遍历 看看列表是不是全选
+                },(err)=>{
+                    console.log(err);
+                });
+
+                
+            },
+            computed: { // 运算性能更高的、有缓存的方法
+                totalCount(){ // 数据的动态响应是围绕 dataAry
+                    return this.dataAry.reduce((prev,next)=>{
+                        if(!next.isSelected) return prev;
+                        return prev+next.productCount;
+                    },0)
+                },
+                /* totalPrice(){
+                    let sum = 0;
+                    this.dataAry.forEach(item=>{
+                        sum += item.productPrice*item.productCount;
+                    });
+                    return sum;
+                }, */
+                /* totalSelect(){ 
+                    let result = this.dataAry.every(item=>item.isSelected == true);
+                    return result;
+                } */
+
+                checkAll: { // 有缓存的方法 计算属性 
+                    get(){
+                        return this.dataAry.every(item=>item.isSelected);
+                    },
+                    set(val){
+                        this.dataAry.forEach(item=>item.isSelected=val);
+                    }
+                },
+
+                sum () {
+                    return this.dataAry.reduce((prev,next)=>{
+                        if(!next.isSelected) return prev;
+                        return prev+next.productPrice*next.productCount;
+                    },0)
+                }
+                
+            },
+            methods: {
+                /* deleteItem(index){
+                    this.dataAry.splice(index,1);
+                } */
+
+                deleteItem(item){ // 过滤出这一项即可
+                    this.dataAry = this.dataAry.filter(ele=>ele!=item);
+                },
+                /* checkAllState () { // 注意 这里的事件不能用 click 来监控 checkbox的状态改变，而应该用 @change
+                    this.dataAry.forEach(item=>item.isSelected=this.checkAll); // 实现全选和反选
+                },
+                checkOne(){ // 下边列表不是全选的时候 全选按钮false
+                    this.checkAll = this.dataAry.every(item=>item.isSelected==true);
+                }, */
+                    
+                
+                //getSum(){ // 计算和 要看它的加数是不是双向绑定的 动态的
+                    
+            },
+            filters: { // 返回的值就是显示
+                toFixed(s,n){ // 第一个参数是管道符号前边的内容,之后的参数就是就是传入函数的参数
+                    return s.toFixed(n);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

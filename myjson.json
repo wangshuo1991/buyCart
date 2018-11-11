@@ -1,0 +1,34 @@
+[
+    {
+       "isSelected": true,
+       "productCover": "https://img10.360buyimg.com/n7/jfs/t1/7766/14/3475/185599/5bd9c598E2b1b2bc1/f2072d2c5526f3d6.jpg",
+       "productName": "天王时尚腕表",
+       "productInfo": "外观时尚 漂亮的不像实力派",
+       "productPrice": 2.00,
+       "productCount": 2
+    },
+    {
+        "isSelected": true,
+        "productCover": "https://img10.360buyimg.com/n7/jfs/t1/7766/14/3475/185599/5bd9c598E2b1b2bc1/f2072d2c5526f3d6.jpg",
+        "productName": "爱丽舍 欧洲 时尚腕表",
+        "productInfo": "来自欧洲 独具匠心",
+        "productPrice": 4.00,
+        "productCount": 1
+     },
+     {
+        "isSelected": true,
+        "productCover": "https://img10.360buyimg.com/n7/jfs/t1/7766/14/3475/185599/5bd9c598E2b1b2bc1/f2072d2c5526f3d6.jpg",
+        "productName": "罗技时尚腕表",
+        "productInfo": "专业防水 五星科技",
+        "productPrice": 1.00,
+        "productCount": 4
+     },
+     {
+        "isSelected": true,
+        "productCover": "https://img10.360buyimg.com/n7/jfs/t1/7766/14/3475/185599/5bd9c598E2b1b2bc1/f2072d2c5526f3d6.jpg",
+        "productName": "阿玛尼 美国原装进口 时尚腕表",
+        "productInfo": "原装进口机芯 终身保修",
+        "productPrice": 3.00,
+        "productCount": 3
+     }
+]
