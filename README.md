@@ -5,13 +5,13 @@
 
 ```javascript
 checkAll: {  
-                        get(){  
-                            return this.dataAry.every(item=>item.isSelected);
-                        },
-                        set(val){   // 实现全选和反选的set
-                            this.dataAry.forEach(item=>item.isSelected=val);
-                        }
-                    }
+           get(){  
+                 return this.dataAry.every(item=>item.isSelected);
+           },
+           set(val){   // 实现全选和反选的set
+                 this.dataAry.forEach(item=>item.isSelected=val);
+           }
+         }
 ```
 
 
