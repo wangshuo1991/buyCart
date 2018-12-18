@@ -3,7 +3,7 @@
 
 ### 实现反选和全选 - computed 计算属性实现
 
-```
+```javascript
 checkAll: {  
                         get(){  
                             return this.dataAry.every(item=>item.isSelected);
@@ -17,7 +17,7 @@ checkAll: {
 
 ### 实现价格和 （实现商品数量综合亦是同样的方法）
 
-```
+```javascript
 sum () { // 数组reduce方法实现累加计算价格
                     return this.dataAry.reduce((prev,next)=>{
                         if(!next.isSelected) return prev;
@@ -28,7 +28,7 @@ sum () { // 数组reduce方法实现累加计算价格
 
 ### 实现删除列表中的某一项
 
-```
+```javascript
 deleteItem(item){ // 过滤出这一项即可
                     this.dataAry = this.dataAry.filter(ele=>ele!=item);
                 }
@@ -36,7 +36,7 @@ deleteItem(item){ // 过滤出这一项即可
 
 还可以用index为参数 - 就是列表的索引值的方法删除。
 
-```
+```javascript
 deleteItem(index){ // 过滤出这一项即可
                     this.dataAry .splice(index,1);
                 }
